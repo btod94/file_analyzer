@@ -29,11 +29,24 @@ def main():
         print("File not found")
         return
     
+    while True:
+        try:
+            top_words=int(input("How many top words: "))
+            if top_words <= 0:
+                print("Please insert the number greater than 0")
+                continue
+            break
+        
+        except ValueError:
+            print("Please input a valid number")
+            
+
     sorted_out=sorted(count_words(text).items(), key=sorting_key, reverse=True)
-    top3=sorted_out[:3]
+    top_words_list=sorted_out[:top_words]
     
-    for index, (key, value) in enumerate(top3, start=1):
+    for index, (key, value) in enumerate(top_words_list, start=1):
         print(f"{index}. {key} - {value}")
+
 
 
 main()
